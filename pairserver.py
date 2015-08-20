@@ -1,5 +1,6 @@
 import socket
 import threading
+import readline
 import random
 import sys
 import time
@@ -8,7 +9,10 @@ def output(conn, addr):
     while True:
         data = conn.recv(1024)
         if not data: break
+        sys.stdout.write('\r'+' '*(len(readline.get_line_buffer())+2)+'\r')
         print "Other person: ", data
+        sys.stdout.write('> ' + readline.get_line_buffer())
+        sys.stdout.flush()
     conn.close()
 
 # Entry point
@@ -28,9 +32,12 @@ thread.start()
 while True:
     msg = raw_input("> ")
     if msg == "exit":
-        conn.send("Server closed")
+        try:
+            conn.send("Server closed")
+        except socket.error:
+            print "Funny error message"
         break
     conn.send(msg)
 
-thread.join()
+mySocket.close()
 print "Connection lost."
