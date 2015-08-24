@@ -10,7 +10,7 @@ def output(conn, addr):
         data = conn.recv(1024)
         if not data: break
         sys.stdout.write('\r'+' '*(len(readline.get_line_buffer())+2)+'\r')
-        print "Other person: ", data
+        print "<Other person>:", data
         sys.stdout.write('> ' + readline.get_line_buffer())
         sys.stdout.flush()
     conn.close()
@@ -31,13 +31,20 @@ thread.start()
 
 while True:
     msg = raw_input("> ")
-    if msg == "\\exit":
+    if msg == "\\exit": # Exit command
         try:
             conn.send("Server closed")
         except socket.error:
             print "Funny error message"
         break
-    if msg[0] != "\\": conn.send(msg)
+
+    elif msg == "\\help": # Help command
+        help = open("help.txt", "r")
+        for line in help:
+            print line,
+        help.close()
+
+    if msg[0] != "\\": conn.send(msg) # If the message starts with a backslash (i.e. it's a command), do not send the message
 
 mySocket.close()
 print "Connection lost."

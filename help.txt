@@ -1,5 +1,9 @@
+
 ---------------
 | PyChat Help |
 ---------------
 
-\exit - Typing this will exit the programme.
+\connect - Connect to a chat.
+\exit    - Typing this will exit the chat or the programme.
+\help    - Shows this help text.
+
