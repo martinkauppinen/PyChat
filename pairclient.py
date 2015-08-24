@@ -5,6 +5,8 @@ import random
 import sys
 import time
 
+help = open("help.txt", "r")
+
 def output(mySocket):
     while True:
         data = mySocket.recv(1024)
@@ -28,11 +30,18 @@ thread.start()
 
 while True:
     msg = raw_input("> ")
-    if msg == "exit":
+    if msg == "\\exit": # Exit command
         try:
             mySocket.send("User disconnected")
         except socket.error:
             print "Funny error message"
         break
-    mySocket.send(msg)
+
+    elif msg == "\help": # Help command
+        for line in help:
+            print line,
+
+    if msg[0] != "\\": mySocket.send(msg) # If the message starts with a backslash (i.e. it's a command), do not send the message
+
 mySocket.close()
+help.close()

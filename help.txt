@@ -1,0 +1,5 @@
+---------------
+| PyChat Help |
+---------------
+
+\exit - Typing this will exit the programme.

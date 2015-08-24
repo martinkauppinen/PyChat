@@ -31,13 +31,13 @@ thread.start()
 
 while True:
     msg = raw_input("> ")
-    if msg == "exit":
+    if msg == "\\exit":
         try:
             conn.send("Server closed")
         except socket.error:
             print "Funny error message"
         break
-    conn.send(msg)
+    if msg[0] != "\\": conn.send(msg)
 
 mySocket.close()
 print "Connection lost."
