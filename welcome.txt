@@ -1,0 +1,6 @@
+
+#--------------------#
+| Welcome to PyChat! |
+#--------------------#
+Type \help to show help
+
