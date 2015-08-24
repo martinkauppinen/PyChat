@@ -1,7 +1,7 @@
 
----------------
-| PyChat Help |
----------------
+╔═════════════╗
+║ PyChat Help ║
+╚═════════════╝
 
 \connect - Connect to a chat.
 \exit    - Typing this will exit the chat or the programme.
